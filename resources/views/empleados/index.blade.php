@@ -9,8 +9,6 @@
         </div>
     </div>
 
-    
-
     <div class="row">
         <div class="col-md-12">
         </div>
@@ -20,11 +18,11 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Sexo</th>
-                    <th scope="col">Área</th>
-                    <th scope="col">Boletín</th>
+                    <th scope="col"> <i class="fas fa-user"></i> Nombre</th>
+                    <th scope="col"> <i class="fas fa-at"></i> Email</th>
+                    <th scope="col"> <i class="fas fa-venus-mars"></i> Sexo</th>
+                    <th scope="col"> <i class="fas fa-briefcase"></i> Área</th>
+                    <th scope="col"> <i class="fas fa-envelope"></i> Boletín</th>
                     <th scope="col">Modificar</th>
                     <th scope="col">Elminiar</th>
                 </tr>
@@ -35,14 +33,14 @@
                         <td> <a href="{{ route('users.show', $user->id) }}"> <strong> {{ $user->nombre }} </strong> </a></td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->sexo }}</td>
-                        <td>{{ $user->area_id }}</td>
+                        <td>{{ $user->area->nombre }}</td>
                         <td>{{ $user->boletin }}</td>
-                        <td><a href="{{ route('users.edit', $user->id) }}"> Editar </a></td>
+                        <td><a href="{{ route('users.edit', $user->id) }}"> <i class="fas fa-edit"></i> </a></td>
                         <td>
                             <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
-                                <input type="submit" class="btn btn-danger" value="Eliminar">
+                                <button style="background: transparent; border: none;" type="submit"><i class="fas fa-trash-alt"></i></button>
                             </form>
                         </td>
                     </tr>

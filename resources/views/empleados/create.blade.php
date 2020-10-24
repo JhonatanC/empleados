@@ -71,7 +71,7 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-10">
                 <div class="form-check">
-                    <input name="boletin" class="form-check-input" type="checkbox" id="">
+                    <input name="boletin" class="form-check-input" type="checkbox" id="" value="Si">
                     <label class="form-check-label" for="">
                         Deseo recibir boletín informativo
                     </label>
