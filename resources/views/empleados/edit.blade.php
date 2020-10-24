@@ -68,8 +68,8 @@
                 <div class="col-sm-2">Área *</div>
                 <div class="col-sm-10">
                     <select name="area_id" class="form-control" id="area">
-                        @foreach($roles as $rol)
-                            <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
+                        @foreach($areas as $area)
+                            <option value="{{ $area->id }}">{{ $area->nombre }}</option>
                         @endforeach
                     </select>
                 </div>

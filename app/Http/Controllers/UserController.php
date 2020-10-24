@@ -42,7 +42,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         // return $validated = $request->validated();
         // return $request->all();
@@ -57,11 +57,13 @@ class UserController extends Controller
         $user->save();
 
         $getRoles = $request->rol_id;
-        for($i = 0; $i <= count($getRoles) - 1; $i++){
-            $empleadoRol = new EmpleadoRol();
-            $empleadoRol->user_id = $user->id;
-            $empleadoRol->rol_id = $getRoles[$i];
-            $empleadoRol->save();
+        if($getRoles > 0){
+            for($i = 0; $i <= count($getRoles) - 1; $i++){
+                $empleadoRol = new EmpleadoRol();
+                $empleadoRol->user_id = $user->id;
+                $empleadoRol->rol_id = $getRoles[$i];
+                $empleadoRol->save();
+            }
         }
 
         return redirect()->route('users.index')->with('info','El usuario fue guardado');
@@ -90,7 +92,8 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles = Role::all();
-        return view('empleados.edit',compact('user','roles'));
+        $areas = Area::all();
+        return view('empleados.edit',compact('user','roles','areas'));
     }
 
     /**

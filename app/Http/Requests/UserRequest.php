@@ -25,8 +25,28 @@ class UserRequest extends FormRequest
     {
         return [
             'nombre' => 'required',
-            'email' => 'required'
-
+            'email' => 'required|unique:users',
+            'sexo' => 'required',
+            'boletin' => 'required',
+            'area_id' => 'required'
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'nombre.required' => 'El nombre es obligatorio',
+            'email.required'  => 'El email es obligatorio',
+            'email.unique' => 'El correo ya existe',
+            'sexo.required' => 'El género es obligatorio',
+            'boletin.required' => 'El boletín es obligatorio',
+            'area_id.required' => 'El área es obligatoria'
+        ];
+    }
+
 }
