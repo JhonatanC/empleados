@@ -53,8 +53,8 @@
             <div class="col-sm-2">Área *</div>
             <div class="col-sm-10">
                 <select name="area_id" class="form-control" id="area">
-                    @foreach($roles as $rol)
-                        <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
+                    @foreach($areas as $area)
+                        <option value="{{ $area->id }}">{{ $area->nombre }}</option>
                     @endforeach
                 </select>
             </div>
@@ -71,7 +71,7 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-10">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="">
+                    <input name="boletin" class="form-check-input" type="checkbox" id="">
                     <label class="form-check-label" for="">
                         Deseo recibir boletín informativo
                     </label>
@@ -83,39 +83,15 @@
             <div class="col-sm-2">Roles *</div>
             <div class="col-sm-10">
 
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="">
-                    <label class="form-check-label" for="">
-                        Profesional de proyectos - Desarrollo
-                    </label>
-                </div>
+                @foreach($roles as $rol)
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="rol_id[]" id="" value="{{ $rol->id }}">
+                        <label class="form-check-label" for="">
+                            {{ $rol->nombre }}
+                        </label>
+                    </div>
+                @endforeach
 
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="">
-                    <label class="form-check-label" for="">
-                        Gerente estratégico
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="">
-                    <label class="form-check-label" for="">
-                        Auxiliar administrativo
-                    </label>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-10">
-                <div class="form-check">
-                    <input name="boletin" class="form-check-input" type="checkbox" id="">
-                    <label class="form-check-label" for="">
-                        Deseo recibir boletín informativo
-                    </label>
-                </div>
             </div>
         </div>
 

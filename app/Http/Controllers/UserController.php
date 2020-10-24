@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 
 use App\User;
+use App\Area;
 use App\Role;
+use App\EmpleadoRol;
 
 class UserController extends Controller
 {
@@ -29,8 +31,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        $areas = Area::all();
         $roles = Role::all();
-        return view('empleados.create',compact('roles'));
+        return view('empleados.create',compact('roles','areas'));
     }
 
     /**
@@ -39,29 +42,31 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
         // return $validated = $request->validated();
-        // return $validated;
         // return $request->all();
 
         $user = new User();
-        // dd($user);
-        // dd($request->all());
-        // dd($request->all()['nombre']);
-        // return $validated = $request->validated();
 
         $user->nombre = $request->all()['nombre'];
         $user->email = $request->all()['email'];
         $user->sexo = $request->all()['sexo'];
         $user->boletin = $request->all()['boletin'];
         $user->area_id = $request->all()['area_id'];
-
         $user->save();
-        // $user->nombre = $request->all();
+
+        $getRoles = $request->rol_id;
+        for($i = 0; $i <= count($getRoles) - 1; $i++){
+            $empleadoRol = new EmpleadoRol();
+            $empleadoRol->user_id = $user->id;
+            $empleadoRol->rol_id = $getRoles[$i];
+            $empleadoRol->save();
+        }
 
         return redirect()->route('users.index')->with('info','El usuario fue guardado');
     }
+
 
     /**
      * Display the specified resource.
@@ -104,7 +109,6 @@ class UserController extends Controller
             $user->email = $request->all()['email'];
             $user->sexo = $request->all()['sexo'];
             $user->boletin = $request->all()['boletin'] = 'No';
-            // $user->boletin = $request->all()['boletin'];
             $user->area_id = $request->all()['area_id'];
 
             $user->save();
@@ -114,28 +118,11 @@ class UserController extends Controller
             $user->email = $request->all()['email'];
             $user->sexo = $request->all()['sexo'];
             $user->boletin = $request->all()['boletin'] = 'Si';
-            // $user->boletin = $request->all()['boletin'];
             $user->area_id = $request->all()['area_id'];
 
             $user->save();
             return redirect()->route('users.index')->with('info','El usuario fue actualizado');
         }
-
-        // die();
-        // dd($user);
-        
-        // dd($request->all()['nombre']);
-        // return $validated = $request->validated();
-
-        // $user->nombre = $request->all()['nombre'];
-        // $user->email = $request->all()['email'];
-        // $user->sexo = $request->all()['sexo'];
-        // $user->boletin = $request->all()['boletin'];
-        // $user->area_id = $request->all()['area_id'];
-
-        // $user->save();
-        // $user->nombre = $request->all();
-        // return redirect()->route('users.index')->with('info','El usuario fue actualizado');
 
     }
 
