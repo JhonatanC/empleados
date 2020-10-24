@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+use App\Role;
+
 class UserController extends Controller
 {
     /**
@@ -13,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('empleados.index',compact('users'));
     }
 
     /**
@@ -23,7 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('empleados.create');
+        $roles = Role::all();
+        return view('empleados.create',compact('roles'));
     }
 
     /**
@@ -34,7 +39,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        var_dump($request->all());
     }
 
     /**
@@ -45,7 +50,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('empleados.show',compact('user'));
     }
 
     /**
@@ -56,7 +62,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $roles = Role::all();
+        return view('empleados.edit',compact('user','roles'));
     }
 
     /**
@@ -68,7 +76,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        var_dump($request->all());
+        // return redirect()->route('users.index');
     }
 
     /**
@@ -79,6 +88,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        return back()->with('info','El usuario fue eliminado');
     }
 }

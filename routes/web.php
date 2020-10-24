@@ -12,5 +12,6 @@
 */
 
 Route::get('/', 'UserController@create');
+Route::resource('users', 'UserController');
 
 // Route::resource('/','UserController@create');
