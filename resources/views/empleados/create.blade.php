@@ -13,6 +13,8 @@
         </div>
     </div>
 
+    @include('empleados.partials.error')
+
     <form action="{{ route('users.store' ) }}" method="POST">
         {{ csrf_field() }}
         <div class="form-group row">
@@ -32,13 +34,13 @@
             <legend class="col-form-label col-sm-2 pt-0">Sexo</legend>
             <div class="col-sm-10">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="genero" id="masculino" value="masculino">
+                    <input class="form-check-input" type="radio" name="sexo" id="masculino" value="masculino">
                     <label class="form-check-label" for="masculino">
                         Masculino
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="genero" id="femenino" value="femenino">
+                    <input class="form-check-input" type="radio" name="sexo" id="femenino" value="femenino">
                     <label class="form-check-label" for="femenino">
                         Femenino
                     </label>
@@ -48,26 +50,38 @@
         </fieldset>
 
         <div class="form-group row">
-                <div class="col-sm-2">Área *</div>
-                <div class="col-sm-10">
-                    <select name="area" class="form-control" id="area">
-                        @foreach($roles as $rol)
-                            <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-        
-        <div class="form-group row">
-            <div class="col-sm-2">Roles *</div>
+            <div class="col-sm-2">Área *</div>
             <div class="col-sm-10">
+                <select name="area_id" class="form-control" id="area">
+                    @foreach($roles as $rol)
+                        <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
 
+        <div class="form-group row">
+            <div class="col-sm-2">Descripción *</div>
+            <div class="col-sm-10">
+                <textarea name="descripcion" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripción de la experiencia del empleado"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="">
                     <label class="form-check-label" for="">
                         Deseo recibir boletín informativo
                     </label>
                 </div>
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-sm-2">Roles *</div>
+            <div class="col-sm-10">
 
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="">
@@ -94,9 +108,14 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-2">Descripción *</div>
+            <div class="col-sm-2"></div>
             <div class="col-sm-10">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripción de la experiencia del empleado"></textarea>
+                <div class="form-check">
+                    <input name="boletin" class="form-check-input" type="checkbox" id="">
+                    <label class="form-check-label" for="">
+                        Deseo recibir boletín informativo
+                    </label>
+                </div>
             </div>
         </div>
 

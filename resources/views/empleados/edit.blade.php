@@ -7,6 +7,8 @@
                 <h1>Editar empleado: </h1>
             </div>
         </div>
+
+        @include('empleados.partials.error')
         
         <form action="{{ route('users.update', $user['id'] ) }}" method="POST">
 
@@ -29,18 +31,35 @@
                 <div class="row">
                 <legend class="col-form-label col-sm-2 pt-0">Sexo</legend>
                 <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sexo" id="masculino" value="{{ $user['sexo'] }}">
-                        <label class="form-check-label" for="masculino">
-                            Masculino
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sexo" id="femenino" value="{{ $user['sexo'] }}">
-                        <label class="form-check-label" for="femenino">
-                            Femenino
-                        </label>
-                    </div>
+                    
+                        @if($user['sexo'] == 'masculino')
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sexo" id="masculino" value="masculino" checked>
+                                <label class="form-check-label" for="masculino">
+                                    Masculino
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sexo" id="femenino" value="femenino">
+                                <label class="form-check-label" for="femenino">
+                                    Femenino
+                                </label>
+                            </div>
+                        @elseif($user['sexo'] == 'femenino')
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sexo" id="masculino" value="masculino">
+                                <label class="form-check-label" for="masculino">
+                                    Masculino
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sexo" id="femenino" value="femenino" checked>
+                                <label class="form-check-label" for="femenino">
+                                    Femenino
+                                </label>
+                            </div>
+                        @endif
+
                 </div>
                 </div>
             </fieldset>
@@ -48,24 +67,29 @@
             <div class="form-group row">
                 <div class="col-sm-2">Área *</div>
                 <div class="col-sm-10">
-                    <select name="area" class="form-control" id="area">
+                    <select name="area_id" class="form-control" id="area">
                         @foreach($roles as $rol)
                             <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
-            
-            <div class="form-group row">
-                <div class="col-sm-2">Roles *</div>
-                <div class="col-sm-10">
 
+            <div class="form-group row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="">
                         <label class="form-check-label" for="">
                             Deseo recibir boletín informativo
                         </label>
                     </div>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-sm-2">Roles *</div>
+                <div class="col-sm-10">
 
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="">
@@ -88,6 +112,27 @@
                         </label>
                     </div>
 
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                    @if($user['boletin'] == 'Si')
+                        <div class="form-check">
+                            <input name="boletin" class="form-check-input" type="checkbox" id="" value="Si" checked>
+                            <label class="form-check-label" for="">
+                                Deseo recibir boletín informativo
+                            </label>
+                        </div>
+                    @elseif($user['boletin'] != 'Si')
+                        <div class="form-check">
+                            <input name="boletin" class="form-check-input" type="checkbox" id="" value="No">
+                            <label class="form-check-label" for="">
+                                Deseo recibir boletín informativo
+                            </label>
+                        </div>
+                    @endif
                 </div>
             </div>
 
