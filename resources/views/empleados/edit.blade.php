@@ -68,50 +68,18 @@
                 <div class="col-sm-2">Área *</div>
                 <div class="col-sm-10">
                     <select name="area_id" class="form-control" id="area">
+                        {{ $areas }}
                         @foreach($areas as $area)
-                            <option value="{{ $area->id }}">{{ $area->nombre }}</option>
+                            <option value="{{ $area->id }}" selected>{{ $area->nombre }}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
 
             <div class="form-group row">
-                <div class="col-sm-2"></div>
+                <div class="col-sm-2">Descripción *</div>
                 <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="">
-                        <label class="form-check-label" for="">
-                            Deseo recibir boletín informativo
-                        </label>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="form-group row">
-                <div class="col-sm-2">Roles *</div>
-                <div class="col-sm-10">
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="">
-                        <label class="form-check-label" for="">
-                            Profesional de proyectos - Desarrollo
-                        </label>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="">
-                        <label class="form-check-label" for="">
-                            Gerente estratégico
-                        </label>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="">
-                        <label class="form-check-label" for="">
-                            Auxiliar administrativo
-                        </label>
-                    </div>
-
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripción de la experiencia del empleado"></textarea>
                 </div>
             </div>
 
@@ -135,11 +103,23 @@
                     @endif
                 </div>
             </div>
-
+            
             <div class="form-group row">
-                <div class="col-sm-2">Descripción *</div>
+                <div class="col-sm-2">Roles *</div>
                 <div class="col-sm-10">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripción de la experiencia del empleado"></textarea>
+
+                    @foreach($roles as $rol)
+                        @if($rol > 0)
+                            $checked = true
+                        @endif
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="rol_id[]" id="" value="{{ $rol->id }}">
+                            <label class="form-check-label" for="">
+                                {{ $rol->nombre }}
+                            </label>
+                        </div>
+                    @endforeach
+
                 </div>
             </div>
 

@@ -31,8 +31,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        $areas = Area::all();
-        $roles = Role::all();
+        // $areas = Area::all();
+        $areas = Area::orderBy('nombre', 'asc')->get();
+        // $roles = Role::all();
+        $roles = Role::orderBy('nombre', 'asc')->get();
         return view('empleados.create',compact('roles','areas'));
     }
 
@@ -52,8 +54,15 @@ class UserController extends Controller
         $user->nombre = $request->all()['nombre'];
         $user->email = $request->all()['email'];
         $user->sexo = $request->all()['sexo'];
-        $user->boletin = $request->all()['boletin'];
+
+        if(!isset($request->all()['boletin'])){
+            $user->boletin = 'No';
+        } else {
+            $user->boletin = $request->all()['boletin'];
+        }
+
         $user->area_id = $request->all()['area_id'];
+        $user->descripcion = $request->all()['descripcion'];
         $user->save();
 
         $getRoles = $request->rol_id;
@@ -66,7 +75,7 @@ class UserController extends Controller
             }
         }
 
-        return redirect()->route('users.index')->with('info','El usuario fue guardado');
+        return redirect()->route('users.index')->with('info','El empleado fue guardado');
     }
 
 
@@ -91,8 +100,10 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $roles = Role::all();
-        $areas = Area::all();
+        // $roles = Role::all();
+        $roles = Role::orderBy('nombre', 'asc')->get();
+        // $areas = Area::all()->orderBy('nombre', 'asc');
+        $areas = Area::orderBy('nombre', 'asc')->get();
         return view('empleados.edit',compact('user','roles','areas'));
     }
 
@@ -113,18 +124,20 @@ class UserController extends Controller
             $user->sexo = $request->all()['sexo'];
             $user->boletin = $request->all()['boletin'] = 'No';
             $user->area_id = $request->all()['area_id'];
+            $user->descripcion = $request->all()['descripcion'];
 
             $user->save();
-            return redirect()->route('users.index')->with('info','El usuario fue actualizado');
+            return redirect()->route('users.index')->with('info','El empleado fue actualizado');
         } else {
             $user->nombre = $request->all()['nombre'];
             $user->email = $request->all()['email'];
             $user->sexo = $request->all()['sexo'];
             $user->boletin = $request->all()['boletin'] = 'Si';
             $user->area_id = $request->all()['area_id'];
+            $user->descripcion = $request->all()['descripcion'];
 
             $user->save();
-            return redirect()->route('users.index')->with('info','El usuario fue actualizado');
+            return redirect()->route('users.index')->with('info','El empleado fue actualizado');
         }
 
     }
@@ -140,6 +153,6 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return back()->with('info','El usuario fue eliminado');
+        return back()->with('info','El empleado fue eliminado');
     }
 }

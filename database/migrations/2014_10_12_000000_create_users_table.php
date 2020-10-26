@@ -18,10 +18,12 @@ class CreateUsersTable extends Migration
             $table->string('nombre');
             $table->string('email')->unique();
             $table->char('sexo',25);
-            $table->integer('boletin');
+            $table->string('boletin');
 
             $table->unsignedInteger('area_id');
             $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
+
+            $table->string('descripcion');
 
             $table->rememberToken();
             $table->timestamps();

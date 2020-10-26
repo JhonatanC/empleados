@@ -30,7 +30,7 @@
             <tbody>
                 @foreach($users as $user)
                     <tr>
-                        <td> <a href="{{ route('users.show', $user->id) }}"> <strong> {{ $user->nombre }} </strong> </a></td>
+                        <td>{{ $user->nombre }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->sexo }}</td>
                         <td>{{ $user->area->nombre }}</td>

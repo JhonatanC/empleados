@@ -27,7 +27,6 @@ class UserRequest extends FormRequest
             'nombre' => 'required',
             'email' => 'required|unique:users',
             'sexo' => 'required',
-            'boletin' => 'required',
             'area_id' => 'required'
         ];
     }
@@ -44,7 +43,6 @@ class UserRequest extends FormRequest
             'email.required'  => 'El email es obligatorio',
             'email.unique' => 'El correo ya existe',
             'sexo.required' => 'El género es obligatorio',
-            'boletin.required' => 'El boletín es obligatorio',
             'area_id.required' => 'El área es obligatoria'
         ];
     }

@@ -15,18 +15,18 @@
 
     @include('empleados.partials.error')
 
-    <form action="{{ route('users.store' ) }}" method="POST">
+    <form id="empleado-form" action="{{ route('users.store' ) }}" method="POST">
         {{ csrf_field() }}
         <div class="form-group row">
-            <label for="" class="col-sm-2 col-form-label">Nombre Completo *</label>
+            <label for="nombre" class="col-sm-2 col-form-label">Nombre Completo *</label>
             <div class="col-sm-10">
-            <input type="text" name="nombre" class="form-control" id="" placeholder="Nombre completo del empleado">
+            <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre completo del empleado">
             </div>
         </div>
         <div class="form-group row">
-            <label for="" class="col-sm-2 col-form-label">Correo Electrónico *</label>
+            <label for="correo" class="col-sm-2 col-form-label">Correo electrónico *</label>
             <div class="col-sm-10">
-            <input type="email" name="email" class="form-control" id="" placeholder="Correo electrónico">
+            <input type="email" name="email" class="form-control" id="correo" placeholder="Correo electrónico">
             </div>
         </div>
         <fieldset class="form-group">
@@ -53,6 +53,7 @@
             <div class="col-sm-2">Área *</div>
             <div class="col-sm-10">
                 <select name="area_id" class="form-control" id="area">
+                    <option value="">Selecciones un área</option>
                     @foreach($areas as $area)
                         <option value="{{ $area->id }}">{{ $area->nombre }}</option>
                     @endforeach
@@ -71,8 +72,8 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-10">
                 <div class="form-check">
-                    <input name="boletin" class="form-check-input" type="checkbox" id="" value="Si">
-                    <label class="form-check-label" for="">
+                    <input name="boletin" class="form-check-input" type="checkbox" id="boletin" value="Si">
+                    <label class="form-check-label" for="boletin">
                         Deseo recibir boletín informativo
                     </label>
                 </div>
