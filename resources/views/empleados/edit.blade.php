@@ -79,7 +79,7 @@
             <div class="form-group row">
                 <div class="col-sm-2">Descripción *</div>
                 <div class="col-sm-10">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripción de la experiencia del empleado"></textarea>
+                    <textarea name="descripcion" class="form-control" id="exampleFormControlTextarea1" rows="3"> {{ $user['descripcion'] }} </textarea>
                 </div>
             </div>
 
@@ -109,11 +109,8 @@
                 <div class="col-sm-10">
 
                     @foreach($roles as $rol)
-                        @if($rol > 0)
-                            $checked = true
-                        @endif
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="rol_id[]" id="" value="{{ $rol->id }}">
+                            <input class="form-check-input" type="checkbox" name="rol_id[]" id="" value="">
                             <label class="form-check-label" for="">
                                 {{ $rol->nombre }}
                             </label>

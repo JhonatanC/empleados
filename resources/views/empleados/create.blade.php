@@ -83,7 +83,6 @@
         <div class="form-group row">
             <div class="col-sm-2">Roles *</div>
             <div class="col-sm-10">
-
                 @foreach($roles as $rol)
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="rol_id[]" id="" value="{{ $rol->id }}">
@@ -92,7 +91,6 @@
                         </label>
                     </div>
                 @endforeach
-
             </div>
         </div>
 
